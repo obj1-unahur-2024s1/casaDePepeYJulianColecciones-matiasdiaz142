@@ -56,6 +56,21 @@ object cuentaCombinada{
 			cuentaSecundaria.extraer(unImporte)
 		}
 	}
+	
+	//Lo dejo en extraerDesafio para poder testear correctamente los puntos anteriores.
+	method extraerDesafio(unImporte){
+		if(cuentaPrimaria.saldo() >= unImporte)
+		{
+			cuentaPrimaria.extraer(unImporte)
+		}
+		else
+		{
+			var saldoCuentaPrimaria = cuentaPrimaria.saldo()
+			cuentaPrimaria.extraer(saldoCuentaPrimaria)
+			cuentaSecundaria.extraer(unImporte - saldoCuentaPrimaria)
+		}
+	}
+	
 	method saldo(){
 		return cuentaPrimaria.saldo() + cuentaSecundaria.saldo()
 	}

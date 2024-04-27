@@ -40,3 +40,12 @@ test "extrayendo 100k, queda la cuentaConGastos(secundaria) en 1.900.00"{
 	assert.equals(1898000,cuentaConGastos.saldo())
 }
 
+test "extrayendo 100k pero con el Desafio"{
+	cuentaCombinada.cuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.cuentaSecundaria(cuentaConGastos)	
+	cuentaCorriente.saldo(30000)
+	cuentaConGastos.saldo(2000000)
+	cuentaCombinada.extraerDesafio(100000)
+	
+	assert.equals(1928600,cuentaConGastos.saldo())
+}
