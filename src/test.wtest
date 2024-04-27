@@ -1,0 +1,42 @@
+import banco.*
+
+test "2.030.000 de saldo cuenta combinada" {
+	cuentaCombinada.cuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.cuentaSecundaria(cuentaConGastos)	
+	cuentaCorriente.saldo(30000)
+	cuentaConGastos.saldo(2000000)
+	
+	assert.equals(2030000,cuentaCombinada.saldo())
+}
+
+test "40.000 de saldo en la cuenta corriente(principal), depositando en la cuenta combinada 10k"{
+	cuentaCombinada.cuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.cuentaSecundaria(cuentaConGastos)	
+	cuentaCorriente.saldo(30000)
+	cuentaConGastos.saldo(2000000)
+	cuentaCombinada.depositar(10000)
+	
+	assert.equals(40000,cuentaCorriente.saldo())
+}
+
+test "25.000 de saldo en la cuenta corriente(principal), depositando en la cuenta combinada 10k y extr 5k"{
+	cuentaCombinada.cuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.cuentaSecundaria(cuentaConGastos)	
+	cuentaCorriente.saldo(30000)
+	cuentaConGastos.saldo(2000000)
+	cuentaCombinada.depositar(10000)
+	cuentaCombinada.extraer(5000)
+	
+	assert.equals(35000,cuentaCorriente.saldo())
+}
+
+test "extrayendo 100k, queda la cuentaConGastos(secundaria) en 1.900.00"{
+	cuentaCombinada.cuentaPrimaria(cuentaCorriente)
+	cuentaCombinada.cuentaSecundaria(cuentaConGastos)	
+	cuentaCorriente.saldo(30000)
+	cuentaConGastos.saldo(2000000)
+	cuentaCombinada.extraer(100000)
+	
+	assert.equals(1898000,cuentaConGastos.saldo())
+}
+
